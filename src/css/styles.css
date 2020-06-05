@@ -1,0 +1,28 @@
+body {
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #f1f1f1;
+}
+
+input[type=number] { 
+    width: 100px; 
+}
+
+.jsonviewer .ib { display: inline-block; }
+.jsonviewer table { border-collapse:collapse; border: solid 1px #ccc; clear: left; }
+.jsonviewer th { text-align: left; padding: 4px 8px; text-shadow: #fff 1px 1px -1px; background: #f1f1f1; white-space:nowrap; font-weight: bold; }
+.jsonviewer td { padding: 8px 8px 0 8px; vertical-align: top; line-height: 18px; }
+.jsonviewer dl { margin: 0; clear: left; }
+.jsonviewer dt { font-weight: bold; width: 160px; clear: left; float: left; display:block; white-space:nowrap; line-height: 26px; }
+.jsonviewer dd { display: block; float: left; line-height: 26px; max-width: 600px; margin: 0; }
+.jsonviewer dl dl dt { font-weight: bold; }
+.jsonviewer hr { display:none; }
+.jsonviewer td dl HR { display:block; padding: 0; clear: left; border: none; }
+.jsonviewer td dl { padding: 4px; margin: 0; height:100%; max-width: 700px; }
+.jsonviewer dl td dl dt { padding: 2px; margin: 0 10px 0 0; font-weight: bold; width: 120px; overflow: hidden; clear: left; float: left; display:block; }
+.jsonviewer dl td dl dd { margin: 0; padding: 2px; display: block; float: left; }
+

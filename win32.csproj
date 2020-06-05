@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ServiceStack" Version="5.*" />
+        <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\db\_db\totals.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\db\_db\_table\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\db\_db\_table\meta.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\db\_db\_table\total.html" />
+    </ItemGroup>
+
+    <Target Name="Bundle" BeforeTargets="AfterPublish">
+        <Exec Command="x run _bundle.ss -to /bin/Release/netcoreapp3.1/publish/wwwroot" />
+    </Target>
+    
+</Project>
