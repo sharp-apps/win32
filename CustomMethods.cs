@@ -15,25 +15,14 @@ namespace win32
         internal static extern bool ChooseColor(ref ChooseColor cc);
         
         private int[] customColors = new int[16] {
-            0x00FFFFFF,
-            0x00C0C0C0,
-            0x00808080,
-            0x00000000,
-            0x00FF0000,
-            0x00800000,
-            0x00FFFF00,
-            0x00808000,
-            0x0000FF00,
-            0x00008000,
-            0x0000FFFF,
-            0x00008080,
-            0x000000FF,
-            0x00000080,
-            0x00FF00FF,
-            0x00800080,
+            0x00FFFFFF, 0x00C0C0C0, 0x00808080, 0x00000000,
+            0x00FF0000, 0x00800000, 0x00FFFF00, 0x00808000,
+            0x0000FF00, 0x00008000, 0x0000FFFF, 0x00008080,
+            0x000000FF, 0x00000080, 0x00FF00FF, 0x00800080,
         };
 
         public string chooseColor(ScriptScopeContext scope) => chooseColor(scope, "#ffffff");
+
         public string chooseColor(ScriptScopeContext scope, string defaultColor) => scope.DoWindow(w => {
             var cc = new ChooseColor();
             cc.lStructSize = Marshal.SizeOf(cc);
@@ -59,7 +48,7 @@ namespace win32
             }
         });
     }
-    
+
     static class ChooseColorFlags
     {
         public const int RgbInit              = 0x00000001;

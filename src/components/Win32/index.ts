@@ -60,7 +60,8 @@ import {exec, log } from "../../shared";
                 </p>
 
                 <p>
-                    <pre>messageBox('The Title', 'Caption', MessageBoxType.YesNo | MessageBoxType.IconInformation)</pre>
+<pre>messageBox('The Title', 'Caption', 
+    MessageBoxType.YesNo | MessageBoxType.IconInformation | MessageBoxType.SystemModal)</pre>
                     <button class="btn btn-outline-primary" @click="exec('messageBox')">messageBox</button>
                     <span class="result">{{results.messageBox}}</span>
                 </p>
@@ -148,7 +149,8 @@ export class Win32 extends Vue {
         chooseColor: async () => await evaluateCode('chooseColor(`#336699`)'),
         start: () => start('%USERPROFILE%\\\\.sharp-apps'),
         openUrl: () => openUrl('https://google.com'),
-        messageBox: () => messageBox('The Title', 'Caption', MessageBoxType.YesNo | MessageBoxType.IconInformation),
+        messageBox: () => messageBox('The Title', 'Caption', 
+            MessageBoxType.YesNo | MessageBoxType.IconInformation | MessageBoxType.SystemModal),
         clipboard: () => clipboard(),
         setClipboard: async () => await setClipboard(`Counter: ${this.counter++}`),
         expandEnvVars: () => expandEnvVars('%USERPROFILE% %windir% %OS%'),

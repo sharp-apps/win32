@@ -1,0 +1,6 @@
+name win32 demo
+appName win32
+description Demo Desktop App showcasing Win32 APIs 
+
+debug true
+CefConfig { Kiosk:true }
