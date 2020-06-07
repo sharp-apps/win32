@@ -29,7 +29,7 @@ import {
     windowText,
     windowSetText,
     windowSetState,
-    evaluateCodeAsync,
+    evaluateCodeAsync, evaluateCode,
 } from '@servicestack/desktop';
 import {exec, log } from "../../shared";
 
@@ -37,6 +37,14 @@ import {exec, log } from "../../shared";
     `<div id="desktop" class="p-5">
         <div class="row">
             <div class="col col-6">
+                <h3 class="mb-4">Custom APIs</h3>
+
+                <p>
+                    <pre>chooseColor('#336699')</pre>
+                    <button class="btn btn-outline-primary" @click="exec('chooseColor')">chooseColor</button>
+                    <span class="result">{{results.chooseColor}}</span>
+                </p>
+
                 <h3 class="mb-4">Desktop General APIs</h3>
 
                 <p>
@@ -137,6 +145,7 @@ export class Win32 extends Vue {
     loading = false;
     
     cmds:{[id:string]:() => Promise<any>} = {
+        chooseColor: async () => await evaluateCode('chooseColor(`#336699`)'),
         start: () => start('%USERPROFILE%\\\\.sharp-apps'),
         openUrl: () => openUrl('https://google.com'),
         messageBox: () => messageBox('The Title', 'Caption', MessageBoxType.YesNo | MessageBoxType.IconInformation),

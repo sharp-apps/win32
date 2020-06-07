@@ -7,13 +7,7 @@
     <ItemGroup>
         <PackageReference Include="ServiceStack" Version="5.*" />
         <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\db\_db\totals.html" />
-      <_ContentIncludedByDefault Remove="wwwroot\db\_db\_table\index.html" />
-      <_ContentIncludedByDefault Remove="wwwroot\db\_db\_table\meta.html" />
-      <_ContentIncludedByDefault Remove="wwwroot\db\_db\_table\total.html" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     </ItemGroup>
 
     <Target Name="Bundle" BeforeTargets="AfterPublish">

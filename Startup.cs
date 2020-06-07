@@ -30,43 +30,44 @@ namespace win32
                 AppSettings = new NetCoreAppSettings(Configuration),
             });
         }
+    }
 
-        public class Hello : IReturn<Hello>
-        {
-            public string Name { get; set; }
-        }
-        public class MyServices : Service
-        {
-            public object Any(Hello request) => request;
-        }
+    public class Hello : IReturn<Hello>
+    {
+        public string Name { get; set; }
+    }
+    public class MyServices : Service
+    {
+        public object Any(Hello request) => request;
+    }
 
-        public class AppHost : AppHostBase
-        {
-            public AppHost() 
-                : base(nameof(win32), typeof(MyServices).Assembly) {}
+    public class AppHost : AppHostBase
+    {
+        public AppHost() 
+            : base(nameof(win32), typeof(MyServices).Assembly) {}
             
-            public override void Configure(Container container)
+        public override void Configure(Container container)
+        {
+            SetConfig(new HostConfig {
+                DebugMode = AppSettings.Get(nameof(HostConfig.DebugMode), HostingEnvironment.IsDevelopment()),
+            });
+                
+            if (Config.DebugMode)
             {
-                SetConfig(new HostConfig {
-                    DebugMode = AppSettings.Get(nameof(HostConfig.DebugMode), HostingEnvironment.IsDevelopment()),
-                });
-                
-                if (Config.DebugMode)
-                {
-                    Plugins.Add(new HotReloadFeature {
-                        VirtualFiles = VirtualFiles, //Monitor all folders for changes including /src & /wwwroot
-                    });
-                }
-                
-                Plugins.Add(new SharpPagesFeature {
-                    EnableSpaFallback = true,
-                });
-                
-                Plugins.Add(new DesktopFeature {
-                    AppName = "win32",
-                    AccessRole = RoleNames.AllowAnon,
+                Plugins.Add(new HotReloadFeature {
+                    VirtualFiles = VirtualFiles, //Monitor all folders for changes including /src & /wwwroot
                 });
             }
+                
+            Plugins.Add(new SharpPagesFeature {
+                EnableSpaFallback = true,
+                ScriptMethods = { new CustomMethods() },
+            });
+                
+            Plugins.Add(new DesktopFeature {
+                AppName = "win32",
+                AccessRole = RoleNames.AllowAnon,
+            });
         }
     }
 }
