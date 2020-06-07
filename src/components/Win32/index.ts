@@ -29,7 +29,8 @@ import {
     windowText,
     windowSetText,
     windowSetState,
-    evaluateCodeAsync, evaluateCode,
+    evaluateCodeAsync, 
+    evaluateCode,
 } from '@servicestack/desktop';
 import {exec, log } from "../../shared";
 
