@@ -96,7 +96,7 @@ ServiceStack.Desktop's IPC takes care of invoking the `#Script` [JS-compatible e
 and returning the result:
 
 ```ts
-await evaluateCode('chooseColor(`#336699`)')
+var selectedColor = await evaluateCode('chooseColor(`#336699`)')
 ```
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/win32-choosecolor.png)](https://github.com/sharp-apps/win32)
@@ -117,5 +117,5 @@ function chooseColor(defaultColor?:string) {
 Where it can be called using the same syntax in JS and #Script:
 
 ```ts
-chooseColor(`#336699`)
+var selectedColor = await chooseColor(`#336699`)
 ```
