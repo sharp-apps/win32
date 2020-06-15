@@ -6,7 +6,7 @@ The [win32](https://github.com/sharp-apps/win32) Sharp App contains an examples 
 
 You can run this Gist Desktop App via URL Scheme from:
 
-<strong><p><a name="app://win32">app://win32</a></p></strong>
+<strong><p><a name="app://win32" href="app://win32">app://win32</a></p></strong>
 
 Or via command-line:
 
