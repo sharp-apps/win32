@@ -6,11 +6,17 @@ The [win32](https://github.com/sharp-apps/win32) Sharp App contains an examples 
 
 You can run this Gist Desktop App via URL Scheme from:
 
-    [app://win32](app://win32)
+<strong><p><a name="app://win32">app://win32</a></p></strong>
 
 Or via command-line:
 
     $ app open win32
+
+### Kiosk Mode
+
+This app starts in full-screen **Kiosk** mode, enabled in its [app.settings](https://github.com/sharp-apps/win32/blob/master/scripts/deploy/app.settings) by:
+
+    CefConfig { Kiosk:true }
 
 The main source code of this component is in [Win32/index.ts](https://github.com/sharp-apps/win32/blob/master/src/components/Win32/index.ts),
 which makes use of the built in TypeScript APIs below from `@servicestack/desktop`:
@@ -40,10 +46,10 @@ windowSetPosition(x, y)
 windowSetSize(width, height)
 ```
 
-#### Custom Win32 API
+### Custom Win32 API
 
 You're also not limited to calling the built-in Win32 APIs above as calling custom APIs just involves wrapping the C# inside
-your preferred [#Script method](https://sharpscript.net/docs/methods) that you would like to make it available to JS as, 
+your preferred [#Script method](/docs/methods) that you would like to make it available to JS as, 
 e.g. here's the **win32** implementation for launching [Win32's Color Dialog Box](https://docs.microsoft.com/en-us/windows/win32/dlgbox/color-dialog-box)
 and returning the selected color in HTML Color format:
 
@@ -92,8 +98,7 @@ public class CustomMethods : ScriptMethods
 }
 ```
 
-ServiceStack.Desktop's IPC takes care of invoking the `#Script` [JS-compatible expression](https://sharpscript.net/docs/expression-viewer)
-and returning the result:
+ServiceStack.Desktop's IPC takes care of invoking the `#Script` [JS-compatible expression](/docs/expression-viewer) and returning the result:
 
 ```ts
 var selectedColor = await evaluateCode('chooseColor(`#336699`)')
@@ -119,3 +124,27 @@ Where it can be called using the same syntax in JS and #Script:
 ```ts
 var selectedColor = await chooseColor(`#336699`)
 ```
+
+## Highly productive live-reloading Development experience
+
+If it weren't for the productivity possible for being able to only needing to develop for Chrome's state-of-the-art rendering engine where you can use advanced features like CSS grid along with the productivity of high-level productive Reactive UI frameworks like Vue, the effort into create a Desktop App like ServiceStack Studio wouldn't be justifiable. 
+
+After the next release we'll create pre-packaged project templates for **vue-desktop** and **react-desktop** Desktop Apps to make it easy develop Vue & React Desktop Apps along with scripts to bundle it & publish it to gist. If preferred `app.exe` also lets you deploy the published app to your own private repo & limit access to only users accessible with a GitHub token which they can open with from a URL with:
+
+    app://user/repo?token={GITHUB_TOKEN}
+
+Or on the command line with:
+
+    $ app user/repo -token $GITHUB_TOKEN
+
+> Or without a token by setting it in the `GITHUB_TOKEN` Environment variable
+
+For offline deployments the published `/dist` folder can be copied and launched with `app` (or `x`) in the app's folder:
+
+    $ app
+
+For better Desktop integration this (or custom command-line arguments) can be wrapped in a new Windows Shortcut:
+
+    $ app shortcut
+
+For a look at example Desktop App projects built using this development model can checkout [ServiceStack/Studio](https://github.com/ServiceStack/Studio) or [NetCoreApps/SharpData](https://github.com/NetCoreApps/SharpData).
