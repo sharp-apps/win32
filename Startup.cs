@@ -58,13 +58,20 @@ namespace win32
                     VirtualFiles = VirtualFiles, //Monitor all folders for changes including /src & /wwwroot
                 });
             }
-                
-            Plugins.Add(new SharpPagesFeature {
+        }
+    }
+
+    // Pre Configure SharpPagesFeature & DesktopFeature 
+    public class ConfigureSharpAppFeatures : IPreConfigureAppHost
+    {
+        public void PreConfigure(IAppHost appHost)
+        {
+            appHost.Plugins.Add(new SharpPagesFeature {
                 EnableSpaFallback = true,
                 ScriptMethods = { new CustomMethods() },
             });
                 
-            Plugins.Add(new DesktopFeature {
+            appHost.Plugins.Add(new DesktopFeature {
                 AppName = "win32",
                 AccessRole = RoleNames.AllowAnon,
             });

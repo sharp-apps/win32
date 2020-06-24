@@ -8,6 +8,7 @@ import {
     setClipboard,
     expandEnvVars,
     openFile,
+    openFolder,
     OpenFolderFlags,
     deviceScreenResolution,
     windowSize,
@@ -97,7 +98,14 @@ import {exec, log } from "../../shared";
                 
                 <p>
                     <pre>openFile({ isFolderPicker: true })</pre>
-                    <button class="btn btn-outline-primary" @click="exec('openFolder')">openFile folder</button>
+                    <button class="btn btn-outline-primary" @click="exec('openFileFolder')">openFile folder</button>
+                    <span class="result">{{results.openFileFolder}}</span>
+                </p>
+                
+                
+                <p>
+                    <pre>openFolder({ initialDir: await expandEnvVars('%USERPROFILE%') })</pre>
+                    <button class="btn btn-outline-primary" @click="exec('openFolder')">openFolder</button>
                     <span class="result">{{results.openFolder}}</span>
                 </p>
                 
@@ -161,7 +169,8 @@ export class Win32 extends Vue {
             initialDir: await expandEnvVars('%USERPROFILE%\\\\Pictures'),
             defaultExt: '*.png',
         }),
-        openFolder: () => openFile({ isFolderPicker: true }),
+        openFileFolder: () => openFile({ isFolderPicker: true }),
+        openFolder: async () => openFolder({ initialDir: await expandEnvVars('%USERPROFILE%') }),
         deviceScreenResolution,
         primaryMonitorInfo,
         windowSize,
