@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using ServiceStack;
 using ServiceStack.Configuration;
 using ServiceStack.Desktop;
@@ -26,9 +27,7 @@ namespace win32
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseServiceStack(new AppHost {
-                AppSettings = new NetCoreAppSettings(Configuration),
-            });
+            app.UseServiceStack(new AppHost());
         }
     }
 

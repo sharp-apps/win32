@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ServiceStack" Version="5.*" />
-        <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
-        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+        <PackageReference Include="ServiceStack" Version="6.*" />
+        <PackageReference Include="ServiceStack.Desktop" Version="6.*" />
+        <PackageReference Include="System.Drawing.Common" Version="6.*" />
     </ItemGroup>
 
     <Target Name="Bundle" BeforeTargets="AfterPublish">
